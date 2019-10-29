@@ -97,7 +97,7 @@ func AlertToSlack(w http.ResponseWriter, r *http.Request) {
 
 	var mention = "<!here>"
 	var color = colors[Warn]
-	if strings.HasPrefix(alert.Incident.ConditionName, "[DANGER]") {
+	if strings.HasPrefix(alert.Incident.Summary, "[DANGER]") {
 		mention = "<!channel>"
 		color = colors[Danger]
 	}
@@ -106,9 +106,10 @@ func AlertToSlack(w http.ResponseWriter, r *http.Request) {
 	}
 
 	params := SlackParam{
-		Text: fmt.Sprintf("%s %s %s",
+		Text: fmt.Sprintf("%s %s %s %s",
 			mention,
-			alert.Incident.Summary,
+			alert.Incident.PolicyName,
+			alert.Incident.ConditionName,
 			alert.Incident.URL,
 		),
 		Username: "Alert by Stackdriver",
