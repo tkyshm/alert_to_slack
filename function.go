@@ -97,7 +97,7 @@ func AlertToSlack(w http.ResponseWriter, r *http.Request) {
 
 	var mention = "<!here>"
 	var color = colors[Warn]
-	if strings.HasPrefix(alert.Incident.Summary, "[DANGER]") {
+	if strings.HasPrefix(alert.Incident.ConditionName, "[DANGER]") {
 		mention = "<!channel>"
 		color = colors[Danger]
 	}
