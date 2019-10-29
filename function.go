@@ -60,7 +60,7 @@ type Incident struct {
 
 type Alert struct {
 	Incident Incident `json:"incident"`
-	Version  float64  `json:"version"`
+	Version  string   `json:"version"`
 }
 
 // Slack struct - payload parameter of json to post.
